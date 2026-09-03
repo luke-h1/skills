@@ -1,0 +1,42 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-09-03T19:13:24.374Z"
+  },
+  "expo-plugins": {
+    "source": {
+      "source": "github",
+      "repo": "expo/skills"
+    },
+    "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/expo-plugins",
+    "lastUpdated": "2026-01-17T13:32:13.427Z"
+  },
+  "callstack-agent-skills": {
+    "source": {
+      "source": "github",
+      "repo": "callstackincubator/agent-skills"
+    },
+    "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/callstack-agent-skills",
+    "lastUpdated": "2026-01-17T13:33:11.962Z"
+  },
+  "thedotmack": {
+    "source": {
+      "source": "github",
+      "repo": "thedotmack/claude-mem"
+    },
+    "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/thedotmack",
+    "lastUpdated": "2026-02-08T23:16:10.012Z"
+  },
+  "cloudflare": {
+    "source": {
+      "source": "github",
+      "repo": "cloudflare/skills"
+    },
+    "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/cloudflare",
+    "lastUpdated": "2026-06-25T11:32:04.641Z"
+  }
+}

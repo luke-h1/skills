@@ -1,0 +1,266 @@
+#!/usr/bin/env bash
+#
+# skill - sync global Claude skills into this repo, and reinstall them on a new machine.
+#
+#   skill sync              capture current global skills into the repo
+#   skill sync --push       ...and commit + push
+#   skill install           reinstall every skill from the repo onto this machine
+#   skill schedule          install a launchd job that runs `skill sync --push` daily
+#   skill unschedule        remove that job
+#   skill status            show what's tracked vs what's live
+#
+# Two kinds of global skills are handled:
+#   1. Marketplace skills - symlinked from ~/.claude/skills into ~/.agents/skills,
+#      fully described by ~/.agents/.skill-lock.json (repo + path per skill).
+#      Synced as the lock file; reinstalled by cloning each source repo.
+#   2. Local skills - real directories in ~/.claude/skills that exist nowhere else.
+#      Vendored into skills/ in this repo and symlinked back on install.
+
+set -euo pipefail
+
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CLAUDE_SKILLS="$HOME/.claude/skills"
+AGENTS_SKILLS="$HOME/.agents/skills"
+LOCK_SRC="$HOME/.agents/.skill-lock.json"
+
+VENDOR_DIR="$REPO_DIR/skills"
+MANIFEST_DIR="$REPO_DIR/manifest"
+LOCK_REPO="$MANIFEST_DIR/skill-lock.json"
+LOCAL_LIST="$MANIFEST_DIR/local-skills.txt"
+
+LAUNCHD_LABEL="com.lukehowsam.skill-sync"
+LAUNCHD_PLIST="$HOME/Library/LaunchAgents/$LAUNCHD_LABEL.plist"
+
+c_bold=$'\033[1m'; c_dim=$'\033[2m'; c_green=$'\033[32m'; c_yellow=$'\033[33m'; c_red=$'\033[31m'; c_off=$'\033[0m'
+info()  { printf '%s%s%s\n' "$c_dim" "$*" "$c_off"; }
+ok()    { printf '%s%s%s\n' "$c_green" "$*" "$c_off"; }
+warn()  { printf '%s%s%s\n' "$c_yellow" "$*" "$c_off" >&2; }
+die()   { printf '%s%s%s\n' "$c_red" "$*" "$c_off" >&2; exit 1; }
+section() { printf '\n%s%s%s\n' "$c_bold" "$*" "$c_off"; }
+
+need() { command -v "$1" >/dev/null 2>&1 || die "missing required tool: $1"; }
+
+# ---------------------------------------------------------------------------
+# is $1 (a dir name in ~/.claude/skills) a local custom skill?
+# yes when: it's a real (non-symlink) directory, has a SKILL.md, and is NOT a
+# key in the lock file (so a marketplace skill that happens to be a real dir is
+# never mistaken for a local one).
+lock_keys() {
+  [ -f "$LOCK_SRC" ] || return 0
+  python3 -c 'import json,sys; print("\n".join(json.load(open(sys.argv[1]))["skills"]))' "$LOCK_SRC"
+}
+
+# ---------------------------------------------------------------------------
+cmd_sync() {
+  local push=0
+  [ "${1:-}" = "--push" ] && push=1
+  [ -d "$CLAUDE_SKILLS" ] || die "no ~/.claude/skills on this machine - nothing to sync"
+
+  mkdir -p "$VENDOR_DIR" "$MANIFEST_DIR"
+
+  section "1. Marketplace skills -> manifest/skill-lock.json"
+  if [ -f "$LOCK_SRC" ]; then
+    cp "$LOCK_SRC" "$LOCK_REPO"
+    local n; n=$(python3 -c 'import json,sys;print(len(json.load(open(sys.argv[1]))["skills"]))' "$LOCK_REPO")
+    ok "  captured $n marketplace skills"
+  else
+    warn "  no $LOCK_SRC found - skipping marketplace skills"
+  fi
+  # helpful extras for restoring plugin marketplaces by hand later
+  cp "$HOME/.claude/plugins/known_marketplaces.json" "$MANIFEST_DIR/" 2>/dev/null || true
+  cp "$HOME/.claude/plugins/installed_plugins.json"  "$MANIFEST_DIR/" 2>/dev/null || true
+
+  section "2. Local custom skills -> skills/"
+  local keys; keys=$(lock_keys)
+  : > "$LOCAL_LIST"
+  local count=0
+  while IFS= read -r path; do
+    local name; name=$(basename "$path")
+    [ "$name" = ".DS_Store" ] && continue
+    [ -L "$path" ] && continue                       # symlink => marketplace skill
+    [ -d "$path" ] || continue
+    [ -f "$path/SKILL.md" ] || continue
+    grep -qxF "$name" <<<"$keys" && continue          # tracked in lock => not local
+    rsync -a --delete --exclude '.DS_Store' --exclude '.git' "$path/" "$VENDOR_DIR/$name/"
+    echo "$name" >> "$LOCAL_LIST"
+    count=$((count+1))
+  done < <(find "$CLAUDE_SKILLS" -maxdepth 1 -mindepth 1)
+  sort -o "$LOCAL_LIST" "$LOCAL_LIST"
+  ok "  vendored $count local skills"
+
+  # drop any vendored skill that no longer exists locally
+  if [ -d "$VENDOR_DIR" ]; then
+    for d in "$VENDOR_DIR"/*/; do
+      [ -d "$d" ] || continue
+      local vn; vn=$(basename "$d")
+      grep -qxF "$vn" "$LOCAL_LIST" || { rm -rf "$d"; info "  removed stale vendored skill: $vn"; }
+    done
+  fi
+
+  section "3. git"
+  cd "$REPO_DIR"
+  git add -A skills manifest
+  if git diff --cached --quiet; then
+    ok "  nothing changed"
+    return 0
+  fi
+  git -c color.status=always status --short skills manifest | sed 's/^/  /'
+  if [ "$push" = 1 ]; then
+    git commit -q -m "skill sync: $(date +%Y-%m-%d) ($(wc -l < "$LOCAL_LIST" | tr -d ' ') local skills)"
+    git push -q && ok "  committed + pushed" || warn "  commit made, push failed (set up origin / auth)"
+  else
+    info "  staged. run 'skill sync --push' or commit yourself."
+  fi
+}
+
+# ---------------------------------------------------------------------------
+cmd_install() {
+  need git; need python3
+  [ -f "$LOCK_REPO" ] || [ -d "$VENDOR_DIR" ] || die "repo has nothing to install - run 'skill sync' on your old machine first"
+  mkdir -p "$CLAUDE_SKILLS" "$AGENTS_SKILLS"
+
+  section "1. Local custom skills -> ~/.claude/skills (symlinked to repo)"
+  local lcount=0
+  if [ -d "$VENDOR_DIR" ]; then
+    for d in "$VENDOR_DIR"/*/; do
+      [ -d "$d" ] || continue
+      local name; name=$(basename "$d")
+      local dest="$CLAUDE_SKILLS/$name"
+      if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+        warn "  skip $name - a real dir already exists there"
+        continue
+      fi
+      ln -sfn "$d" "$dest"
+      lcount=$((lcount+1))
+    done
+  fi
+  ok "  linked $lcount local skills"
+
+  section "2. Marketplace skills -> cloning sources"
+  if [ -f "$LOCK_REPO" ]; then
+    # restore the lock file so the skills CLI stays in sync too
+    mkdir -p "$(dirname "$LOCK_SRC")"
+    cp "$LOCK_REPO" "$LOCK_SRC"
+
+    local cache; cache="$(mktemp -d)"
+
+    # stream: name<TAB>sourceType<TAB>sourceUrl<TAB>skillPath
+    python3 - "$LOCK_REPO" <<'PY' > "$cache/plan.tsv"
+import json,sys
+d=json.load(open(sys.argv[1]))["skills"]
+for name,s in d.items():
+    print("\t".join([name, s.get("sourceType",""), s.get("sourceUrl",""), s.get("skillPath","")]))
+PY
+
+    local total done_c fail_c; total=$(wc -l < "$cache/plan.tsv" | tr -d ' '); done_c=0; fail_c=0
+    while IFS=$'\t' read -r name stype surl spath; do
+      local dest="$AGENTS_SKILLS/$name"
+      local link="$CLAUDE_SKILLS/$name"
+      if [ -e "$dest/SKILL.md" ]; then
+        ln -sfn "../../.agents/skills/$name" "$link"; done_c=$((done_c+1)); continue
+      fi
+      if [ "$stype" = "well-known" ] || [[ "$surl" != *.git ]]; then
+        # direct SKILL.md URL (e.g. sentry-cli)
+        mkdir -p "$dest"
+        if curl -fsSL "$surl" -o "$dest/SKILL.md" 2>/dev/null; then
+          ln -sfn "../../.agents/skills/$name" "$link"; done_c=$((done_c+1))
+        else
+          warn "  FAIL $name (fetch $surl)"; fail_c=$((fail_c+1))
+        fi
+        continue
+      fi
+      # git source: clone once per repo into cache, copy the skill folder
+      local slug; slug=$(echo "$surl" | sed 's#[^a-zA-Z0-9]#_#g')
+      local repo="$cache/$slug"
+      if [ ! -d "$repo" ]; then
+        if ! git clone --depth 1 -q "$surl" "$repo" 2>/dev/null; then
+          warn "  FAIL clone $surl"; fail_c=$((fail_c+1)); continue
+        fi
+      fi
+      local folder="$repo/$(dirname "$spath")"
+      if [ -d "$folder" ]; then
+        rm -rf "$dest"; mkdir -p "$dest"
+        rsync -a --exclude '.git' "$folder/" "$dest/"
+        ln -sfn "../../.agents/skills/$name" "$link"; done_c=$((done_c+1))
+      else
+        warn "  FAIL $name (no $spath in repo)"; fail_c=$((fail_c+1))
+      fi
+      printf '\r  %d/%d ...' "$((done_c+fail_c))" "$total"
+    done < "$cache/plan.tsv"
+    printf '\r%*s\r' 40 ''
+    rm -rf "$cache"
+    ok "  restored $done_c marketplace skills"
+    [ "$fail_c" -gt 0 ] && warn "  $fail_c skills failed - source repos may have moved; rerun to retry"
+  else
+    info "  no manifest/skill-lock.json - skipping marketplace skills"
+  fi
+
+  section "Done."
+  info "Restart Claude Code so it picks up the skills."
+}
+
+# ---------------------------------------------------------------------------
+cmd_schedule() {
+  mkdir -p "$(dirname "$LAUNCHD_PLIST")"
+  cat > "$LAUNCHD_PLIST" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>$LAUNCHD_LABEL</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>$REPO_DIR/bin/skill</string>
+    <string>sync</string>
+    <string>--push</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>22</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StandardOutPath</key><string>$HOME/Library/Logs/$LAUNCHD_LABEL.log</string>
+  <key>StandardErrorPath</key><string>$HOME/Library/Logs/$LAUNCHD_LABEL.log</string>
+  <key>EnvironmentVariables</key>
+  <dict><key>PATH</key><string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string></dict>
+</dict>
+</plist>
+PLIST
+  launchctl unload "$LAUNCHD_PLIST" 2>/dev/null || true
+  launchctl load "$LAUNCHD_PLIST"
+  ok "scheduled daily 'skill sync --push' at 22:00"
+  info "logs: ~/Library/Logs/$LAUNCHD_LABEL.log"
+}
+
+cmd_unschedule() {
+  launchctl unload "$LAUNCHD_PLIST" 2>/dev/null || true
+  rm -f "$LAUNCHD_PLIST"
+  ok "removed daily sync job"
+}
+
+# ---------------------------------------------------------------------------
+cmd_status() {
+  section "Repo: $REPO_DIR"
+  if [ -f "$LOCK_REPO" ]; then
+    local n; n=$(python3 -c 'import json,sys;print(len(json.load(open(sys.argv[1]))["skills"]))' "$LOCK_REPO")
+    printf '  marketplace skills tracked: %s\n' "$n"
+  else
+    printf '  marketplace skills tracked: none (no manifest yet)\n'
+  fi
+  if [ -f "$LOCAL_LIST" ]; then
+    printf '  local skills vendored:      %s\n' "$(wc -l < "$LOCAL_LIST" | tr -d ' ')"
+  else
+    printf '  local skills vendored:      none (run skill sync)\n'
+  fi
+  if [ -f "$LAUNCHD_PLIST" ]; then ok "  daily sync: scheduled"; else info "  daily sync: not scheduled (skill schedule)"; fi
+}
+
+# ---------------------------------------------------------------------------
+usage() { sed -n '2,25p' "${BASH_SOURCE[0]}" | sed 's/^#\{0,1\} \{0,1\}//'; }
+
+case "${1:-}" in
+  sync)        shift; cmd_sync "$@" ;;
+  install)     shift; cmd_install "$@" ;;
+  schedule)    cmd_schedule ;;
+  unschedule)  cmd_unschedule ;;
+  status)      cmd_status ;;
+  ""|-h|--help|help) usage ;;
+  *) die "unknown command: $1  (try: skill --help)" ;;
+esac

@@ -1,0 +1,123 @@
+{
+  "version": 2,
+  "plugins": {
+    "csharp-lsp@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/lukehowsam/srv/dev/foam",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/csharp-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-01-17T13:31:02.786Z",
+        "lastUpdated": "2026-01-17T13:31:02.786Z",
+        "gitCommitSha": "96276205880a60fd66bbae981f5ab568e70c4cbf"
+      }
+    ],
+    "expo-app-design@expo-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/expo-plugins/expo-app-design/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-01-17T13:32:25.866Z",
+        "lastUpdated": "2026-01-17T13:32:25.866Z",
+        "gitCommitSha": "960156c49c0973a4d796592f58dc4151907f204f"
+      }
+    ],
+    "expo-deployment@expo-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/expo-plugins/expo-deployment/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-01-17T13:32:33.515Z",
+        "lastUpdated": "2026-01-17T13:32:33.515Z",
+        "gitCommitSha": "960156c49c0973a4d796592f58dc4151907f204f"
+      }
+    ],
+    "upgrading-expo@expo-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/expo-plugins/upgrading-expo/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-01-17T13:32:41.087Z",
+        "lastUpdated": "2026-01-17T13:32:41.087Z",
+        "gitCommitSha": "960156c49c0973a4d796592f58dc4151907f204f"
+      }
+    ],
+    "react-native-best-practices@callstack-agent-skills": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/callstack-agent-skills/react-native-best-practices/2508715a2f01",
+        "version": "2508715a2f01",
+        "installedAt": "2026-01-17T13:33:16.434Z",
+        "lastUpdated": "2026-01-17T13:33:16.434Z",
+        "gitCommitSha": "2508715a2f01abb06e210b844c117b182e12a6ba"
+      }
+    ],
+    "sentry@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/sentry/1.4.0",
+        "version": "1.4.0",
+        "installedAt": "2026-01-17T14:56:04.047Z",
+        "lastUpdated": "2026-09-02T11:51:00.247Z",
+        "gitCommitSha": "d237d4c314e9066689c401a3d61dd3bbfbb7a209"
+      }
+    ],
+    "claude-mem@thedotmack": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/thedotmack/claude-mem/9.1.1",
+        "version": "9.1.1",
+        "installedAt": "2026-02-08T23:16:18.204Z",
+        "lastUpdated": "2026-02-08T23:16:18.204Z",
+        "gitCommitSha": "b2ddf59db46cf380964379e9ba2d7279c67fc12b"
+      }
+    ],
+    "swift-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/swift-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-06-10T18:54:25.562Z",
+        "lastUpdated": "2026-06-10T18:54:25.562Z"
+      }
+    ],
+    "gopls-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-06-10T22:08:39.533Z",
+        "lastUpdated": "2026-06-10T22:08:39.533Z"
+      }
+    ],
+    "expo@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/lukehowsam/srv/dev/crypto-app-bitvavo",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/expo/1.2.0",
+        "version": "1.2.0",
+        "installedAt": "2026-06-12T10:01:06.404Z",
+        "lastUpdated": "2026-06-12T10:08:22.649Z",
+        "gitCommitSha": "bba3c55d7e75f62cbfc937150b4b4ed3873e3b0d"
+      }
+    ],
+    "ralph-loop@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/ralph-loop/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-07-20T16:31:15.970Z",
+        "lastUpdated": "2026-07-20T16:31:15.970Z"
+      }
+    ],
+    "clangd-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-08-03T14:18:55.109Z",
+        "lastUpdated": "2026-08-03T14:18:55.109Z"
+      }
+    ]
+  }
+}

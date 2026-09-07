@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-09-06T17:10:47.339Z"
+    "lastUpdated": "2026-09-07T16:45:16.809Z"
   },
   "expo-plugins": {
     "source": {
@@ -38,5 +38,13 @@
     },
     "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/cloudflare",
     "lastUpdated": "2026-06-25T11:32:04.641Z"
+  },
+  "RevenueCat": {
+    "source": {
+      "source": "github",
+      "repo": "RevenueCat/ai-toolkit"
+    },
+    "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/RevenueCat",
+    "lastUpdated": "2026-09-07T12:08:15.805Z"
   }
 }

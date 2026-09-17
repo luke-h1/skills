@@ -1683,6 +1683,141 @@
       "skillFolderHash": "0bdb821a21e793a4f6f82a7078c052154447e5cc",
       "installedAt": "2026-09-03T19:10:42.188Z",
       "updatedAt": "2026-09-03T19:10:42.188Z"
+    },
+    "planetscale-autonomous-execution-mode": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-autonomous-execution-mode/SKILL.md",
+      "skillFolderHash": "c6151461e117c784bc53e92dd9b00ff8ea7b41d6",
+      "installedAt": "2026-09-17T13:00:25.695Z",
+      "updatedAt": "2026-09-17T13:00:40.065Z"
+    },
+    "planetscale-best-practices-matrix": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-best-practices-matrix/SKILL.md",
+      "skillFolderHash": "7e3b4eb331bedbcfaad828c329fcf6bed4d878d5",
+      "installedAt": "2026-09-17T13:00:25.697Z",
+      "updatedAt": "2026-09-17T13:00:40.066Z"
+    },
+    "planetscale-change-gates-and-approval-contract": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-change-gates-and-approval-contract/SKILL.md",
+      "skillFolderHash": "f22f7d768b7b8478af0d8c57ddfbc8333eb9d4a2",
+      "installedAt": "2026-09-17T13:00:25.698Z",
+      "updatedAt": "2026-09-17T13:00:40.067Z"
+    },
+    "planetscale-codebase-sqlcommenter-instrumentation": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-codebase-sqlcommenter-instrumentation/SKILL.md",
+      "skillFolderHash": "0046a1ffd2733c153a30198da205b2dfd490ee58",
+      "installedAt": "2026-09-17T13:00:25.699Z",
+      "updatedAt": "2026-09-17T13:00:40.068Z"
+    },
+    "planetscale-customer-report-template": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-customer-report-template/SKILL.md",
+      "skillFolderHash": "93a1ba19dac6f5a46c20fdb75bc39db90152ed73",
+      "installedAt": "2026-09-17T13:00:25.700Z",
+      "updatedAt": "2026-09-17T13:00:40.068Z"
+    },
+    "planetscale-mcp-agent-operating-model": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-mcp-agent-operating-model/SKILL.md",
+      "skillFolderHash": "0ae47a9d5391cf0a2a5ffa6bca572417f41fff65",
+      "installedAt": "2026-09-17T13:00:25.701Z",
+      "updatedAt": "2026-09-17T13:00:40.069Z"
+    },
+    "planetscale-postgres-safety-review": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-postgres-safety-review/SKILL.md",
+      "skillFolderHash": "6db2f495f9ae6b4f11c5f744be109247a5987d4d",
+      "installedAt": "2026-09-17T13:00:25.702Z",
+      "updatedAt": "2026-09-17T13:00:40.069Z"
+    },
+    "planetscale-pscale-cli-automation": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-pscale-cli-automation/SKILL.md",
+      "skillFolderHash": "be39f556686d6cc88b2cc5d2f927f21358e40d6a",
+      "installedAt": "2026-09-17T13:00:25.703Z",
+      "updatedAt": "2026-09-17T13:00:40.070Z"
+    },
+    "planetscale-query-insights-and-tags": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-query-insights-and-tags/SKILL.md",
+      "skillFolderHash": "11b72c5f50b99ac1e5e5e5ba3b34b0eadd747452",
+      "installedAt": "2026-09-17T13:00:25.703Z",
+      "updatedAt": "2026-09-17T13:00:40.071Z"
+    },
+    "planetscale-readonly-inventory": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-readonly-inventory/SKILL.md",
+      "skillFolderHash": "d1899f127989af23c8404cad61e01b3d6b3137a6",
+      "installedAt": "2026-09-17T13:00:25.704Z",
+      "updatedAt": "2026-09-17T13:00:40.071Z"
+    },
+    "planetscale-safe-orchestrator": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-safe-orchestrator/SKILL.md",
+      "skillFolderHash": "b49144894249003500a6e3c24cdf8389c5184ee0",
+      "installedAt": "2026-09-17T13:00:25.705Z",
+      "updatedAt": "2026-09-17T13:00:40.072Z"
+    },
+    "planetscale-schema-recommendations-agent-loop": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-schema-recommendations-agent-loop/SKILL.md",
+      "skillFolderHash": "7e96208791f659cd0bd8c587869057d313299082",
+      "installedAt": "2026-09-17T13:00:25.706Z",
+      "updatedAt": "2026-09-17T13:00:40.072Z"
+    },
+    "planetscale-traffic-control-recommendations": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-traffic-control-recommendations/SKILL.md",
+      "skillFolderHash": "b8f9319a9d13a0d643f4f7791e66c518a318ece9",
+      "installedAt": "2026-09-17T13:00:25.706Z",
+      "updatedAt": "2026-09-17T13:00:40.073Z"
+    },
+    "planetscale-vitess-safety-review": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-vitess-safety-review/SKILL.md",
+      "skillFolderHash": "af34dcb0468e438043a560f374b357f995ca04ad",
+      "installedAt": "2026-09-17T13:00:25.707Z",
+      "updatedAt": "2026-09-17T13:00:40.074Z"
+    },
+    "planetscale-webhook-automation-recommendations": {
+      "source": "planetscale/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/planetscale/skills.git",
+      "skillPath": "planetscale-webhook-automation-recommendations/SKILL.md",
+      "skillFolderHash": "8e5f60d42bbb9c512e3e9cdc4a8cd4cce7dd2b37",
+      "installedAt": "2026-09-17T13:00:25.707Z",
+      "updatedAt": "2026-09-17T13:00:40.074Z"
     }
   },
   "dismissed": {
@@ -1690,14 +1825,13 @@
   },
   "lastSelectedAgents": [
     "amp",
-    "antigravity",
-    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
-    "deepagents",
+    "droid",
     "gemini-cli",
     "github-copilot",
+    "kilo",
     "kimi-code-cli",
     "opencode",
     "warp",

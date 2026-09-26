@@ -1818,6 +1818,15 @@
       "skillFolderHash": "8e5f60d42bbb9c512e3e9cdc4a8cd4cce7dd2b37",
       "installedAt": "2026-09-17T13:00:25.707Z",
       "updatedAt": "2026-09-17T13:00:40.074Z"
+    },
+    "brag-slim": {
+      "source": "latent-spaces/brag",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/latent-spaces/brag.git",
+      "skillPath": "skills/brag-slim/SKILL.md",
+      "skillFolderHash": "5b6e7fa195647ad001cd7ce6f89193fb4865bb0b",
+      "installedAt": "2026-09-26T12:48:27.580Z",
+      "updatedAt": "2026-09-26T12:48:27.580Z"
     }
   },
   "dismissed": {

@@ -1661,6 +1661,24 @@
       "skillFolderHash": "5b6e7fa195647ad001cd7ce6f89193fb4865bb0b",
       "installedAt": "2026-09-26T12:48:27.580Z",
       "updatedAt": "2026-09-26T12:48:27.580Z"
+    },
+    "appllama-app-design-skill": {
+      "source": "appllama/appllama-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/appllama/appllama-skills.git",
+      "skillPath": "skills/appllama-app-design-skill/SKILL.md",
+      "skillFolderHash": "f086c89a253ea50e56bcd6b849890dbd873a4747",
+      "installedAt": "2026-09-30T09:50:25.481Z",
+      "updatedAt": "2026-09-30T09:50:25.481Z"
+    },
+    "appllama-usage": {
+      "source": "appllama/appllama-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/appllama/appllama-skills.git",
+      "skillPath": "skills/appllama-usage/SKILL.md",
+      "skillFolderHash": "03d1940357a719a2edf48c1314f689c845c20a43",
+      "installedAt": "2026-09-30T09:50:25.483Z",
+      "updatedAt": "2026-09-30T09:50:25.483Z"
     }
   },
   "dismissed": {

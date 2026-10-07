@@ -2053,6 +2053,24 @@
       "skillFolderHash": "ac92229646fccf7315ae139c37b479b3790617f2",
       "installedAt": "2026-10-04T17:27:55.339Z",
       "updatedAt": "2026-10-04T17:27:55.339Z"
+    },
+    "simplified-technical-english": {
+      "source": "0xpili/simplified-technical-english",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/0xpili/simplified-technical-english.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "1e148d670cba46685ad2b4c3f2354a637a7fdbbe",
+      "installedAt": "2026-10-07T12:56:03.547Z",
+      "updatedAt": "2026-10-07T12:56:03.547Z"
+    },
+    "simple-english": {
+      "source": "AminBlg/SimpleEnglish",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/AminBlg/SimpleEnglish.git",
+      "skillPath": "skills/simple-english/SKILL.md",
+      "skillFolderHash": "dc4493623b0648588e02a0062bed8bcaa535b1de",
+      "installedAt": "2026-10-07T18:19:17.127Z",
+      "updatedAt": "2026-10-07T18:19:17.127Z"
     }
   },
   "dismissed": {
@@ -2069,6 +2087,7 @@
     "kilo",
     "kimi-code-cli",
     "opencode",
+    "pi",
     "warp",
     "zed",
     "claude-code"

@@ -118,6 +118,16 @@
         "installedAt": "2026-08-03T14:18:55.109Z",
         "lastUpdated": "2026-08-03T14:18:55.109Z"
       }
+    ],
+    "accessibility@theodo-group-claude-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/theodo-group-claude-plugins/accessibility/0.4.0",
+        "version": "0.4.0",
+        "installedAt": "2026-10-07T14:12:20.536Z",
+        "lastUpdated": "2026-10-07T14:12:20.536Z",
+        "gitCommitSha": "43145d3a2030d610c1ef9c3bfd1e43dc6019220e"
+      }
     ]
   }
 }

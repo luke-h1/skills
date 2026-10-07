@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-10-06T12:37:35.709Z"
+    "lastUpdated": "2026-10-07T19:27:17.756Z"
   },
   "expo-plugins": {
     "source": {
@@ -46,5 +46,13 @@
     },
     "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/RevenueCat",
     "lastUpdated": "2026-09-07T12:08:15.805Z"
+  },
+  "theodo-group-claude-plugins": {
+    "source": {
+      "source": "github",
+      "repo": "theodo-group/claude-plugins"
+    },
+    "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/theodo-group-claude-plugins",
+    "lastUpdated": "2026-10-07T14:12:19.020Z"
   }
 }

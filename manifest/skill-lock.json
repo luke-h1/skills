@@ -2071,6 +2071,15 @@
       "skillFolderHash": "dc4493623b0648588e02a0062bed8bcaa535b1de",
       "installedAt": "2026-10-07T18:19:17.127Z",
       "updatedAt": "2026-10-07T18:19:17.127Z"
+    },
+    "expo-upgrade": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-upgrade/SKILL.md",
+      "skillFolderHash": "e281ad392b8cacb76b90ea831aa7b90fa41617f8",
+      "installedAt": "2026-10-16T17:32:08.963Z",
+      "updatedAt": "2026-10-16T17:32:08.963Z"
     }
   },
   "dismissed": {

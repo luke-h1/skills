@@ -104,10 +104,11 @@
     "ralph-loop@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/ralph-loop/1.0.0",
-        "version": "1.0.0",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/claude-plugins-official/ralph-loop/1.0.1",
+        "version": "1.0.1",
         "installedAt": "2026-07-20T16:31:15.970Z",
-        "lastUpdated": "2026-07-20T16:31:15.970Z"
+        "lastUpdated": "2026-10-28T12:33:14.167Z",
+        "gitCommitSha": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28"
       }
     ],
     "clangd-lsp@claude-plugins-official": [

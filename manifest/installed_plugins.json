@@ -129,6 +129,16 @@
         "lastUpdated": "2026-10-07T14:12:20.536Z",
         "gitCommitSha": "43145d3a2030d610c1ef9c3bfd1e43dc6019220e"
       }
+    ],
+    "vastai@vastai-skills": [
+      {
+        "scope": "user",
+        "installPath": "/Users/lukehowsam/.claude/plugins/cache/vastai-skills/vastai/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-11-06T13:32:55.249Z",
+        "lastUpdated": "2026-11-06T13:32:55.249Z",
+        "gitCommitSha": "32e158c59679f72c73fbd179a943de64ae13c90c"
+      }
     ]
   }
 }

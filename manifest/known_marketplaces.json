@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-11-05T21:27:51.145Z"
+    "lastUpdated": "2026-11-06T19:46:42.102Z"
   },
   "expo-plugins": {
     "source": {
@@ -54,5 +54,13 @@
     },
     "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/theodo-group-claude-plugins",
     "lastUpdated": "2026-10-07T14:12:19.020Z"
+  },
+  "vastai-skills": {
+    "source": {
+      "source": "github",
+      "repo": "LiorZ/vastai-claude-skill"
+    },
+    "installLocation": "/Users/lukehowsam/.claude/plugins/marketplaces/vastai-skills",
+    "lastUpdated": "2026-11-06T13:32:50.105Z"
   }
 }

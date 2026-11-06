@@ -2,3 +2,4 @@ react-native-project-structure
 sandbox-migrate-to-next
 sandbox-next
 sandbox-stable
+windows-steam-mac

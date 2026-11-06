@@ -51,7 +51,8 @@ if [ "$yes" != 1 ]; then
 fi
 
 osascript -e "tell application id \"$BUNDLE_ID\" to quit" >/dev/null 2>&1 || true
-[ -x "$APP/Contents/SharedSupport/wine/bin/wineserver" ] && "$APP/Contents/SharedSupport/wine/bin/wineserver" -k 2>/dev/null || true
+# The engine wineserver aborts outside the launcher environment, so stop the processes by path.
+pkill -f "$APP/Contents/" 2>/dev/null || true
 sleep 2
 
 printf '%s\n' "$targets" | sed '/^$/d' | while IFS= read -r p; do

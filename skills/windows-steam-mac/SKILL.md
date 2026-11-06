@@ -69,6 +69,10 @@ The first start of a game can run a .NET installer. This installer is slow in Wi
 - `Contents/Resources/Scripts/StartupScript` runs before Wine. macOS gives its child processes the identity of the wrapper.
 - `Contents/MacOS/wineskinlauncher` accepts commands: `WSS-wineprefixcreate`, `WSS-winetricks <verb>`, `WSS-winecfg`, `WSS-wineserverkill`.
 
+## Removal
+
+To remove this setup, use the `windows-steam-mac-uninstall` skill.
+
 ## Limits
 
 - Games with kernel anti-cheat do not start in Wine.

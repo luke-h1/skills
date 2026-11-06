@@ -3,3 +3,4 @@ sandbox-migrate-to-next
 sandbox-next
 sandbox-stable
 windows-steam-mac
+windows-steam-mac-uninstall

@@ -1,3 +1,9 @@
+appeeky-spec
+appeeky-spec-experiments
+appeeky-spec-localize
+appeeky-spec-review
+appeeky-spec-targets
+appeeky-spec-visibility
 react-native-project-structure
 sandbox-migrate-to-next
 sandbox-next
